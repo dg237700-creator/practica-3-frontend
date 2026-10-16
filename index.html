@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de productos | Mi API REST</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            padding: 25px 7%;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            color: #cbd5e1;
+        }
+
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .tarjeta, .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 4px 15px #0000000d;
+        }
+
+        .tarjeta h3 {
+            margin-top: 0;
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        .tarjeta p {
+            margin-bottom: 0;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .panel {
+            margin-bottom: 25px;
+            overflow-x: auto;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 450px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+        }
+
+        .grafica {
+            position: relative;
+            height: 350px;
+        }
+
+        button {
+            border: none;
+            border-radius: 7px;
+            padding: 11px 16px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #mensaje {
+            margin: 15px 0;
+            color: #475569;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Panel de productos</h1>
+        <p>Datos consultados desde una API REST conectada a MySQL</p>
+    </header>
+
+    <main>
+        <div class="resumen">
+            <section class="tarjeta">
+                <h3>Total de productos</h3>
+                <p id="total-productos">0</p>
+            </section>
+
+            <section class="tarjeta">
+                <h3>Precio promedio</h3>
+                <p id="precio-promedio">$0.00</p>
+            </section>
+
+            <section class="tarjeta">
+                <h3>Producto más caro</h3>
+                <p id="producto-caro">--</p>
+            </section>
+        </div>
+
+        <section class="panel">
+            <h2>Inventario de productos</h2>
+            <button id="btn-actualizar" type="button">
+                Actualizar datos
+            </button>
+
+            <p id="mensaje">Cargando productos...</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-datos">
+                    <tr>
+                        <td colspan="3">Cargando...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="panel">
+            <h2>Comparación de precios</h2>
+            <div class="grafica">
+                <canvas id="miGrafica"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Práctica de consumo de API REST con JavaScript, MySQL y Chart.js
+    </footer>
+
+    <!-- Scripts cargados al final del body -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
